@@ -1,0 +1,64 @@
+- hosts: webservers
+  tasks:
+      - name: Add packages on FreeBSD
+        pkgng:
+            name: apache24,php72,mod_php72,phpMyAdmin-php72
+
+      - name: Creating directory...
+        file: 
+          path: /usr/local/etc/apache24/certs 
+          state: directory
+
+      - name: Configuring Web server (httpd.conf)...
+        copy:
+          remote_src: no
+          src: /root/Cloud/Apps/Conf/httpd.conf
+          dest: /usr/local/etc/apache24/httpd.conf
+          owner: root
+          group: wheel
+          mode: 0644
+
+      - name: Configuring Web server (httpd-ssl.conf)...
+        copy:
+          remote_src: no
+          src: /root/Cloud/Apps/Conf/httpd-ssl.conf
+          dest: /usr/local/etc/apache24/extra/httpd-ssl.conf
+          owner: root
+          group: wheel
+          mode: 0644
+
+
+      - name: Configuring Web server (webcert.crt)...
+        copy:
+          remote_src: no
+          src: /root/Cloud/Apps/Conf/webcert.crt
+          dest: /usr/local/etc/apache24/certs/webcert.crt
+          owner: root
+          group: wheel
+          mode: 0444
+
+      - name: Configuring Web server (webcert.key)...
+        copy:
+          remote_src: no
+          src: /root/Cloud/Apps/Conf/webcert.key
+          dest: /usr/local/etc/apache24/certs/webcert.key
+          owner: root
+          group: wheel
+          mode: 0444
+
+
+      - name: Configuring Web server (Application)...
+        copy:
+          remote_src: no
+          src: /root/Cloud/Apps/Conf/config.inc.php
+          dest: /usr/local/www/phpMyAdmin/config.inc.php
+          owner: root
+          group: wheel
+          mode: 0444
+
+      - name: Starting Web server...
+        service:
+          name: apache24
+          state: started
+          enabled: yes
+

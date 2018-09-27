@@ -1,0 +1,24 @@
+- hosts: dbservers
+  tasks:
+      - name: Add packages on FreeBSD
+        pkgng:
+            name: mysql56-server, py27-MySQLdb56
+
+      - name: Starting DB server...
+        service:
+          name: mysql-server
+          state: started
+          enabled: yes
+
+      - name: Setting password
+        command: "/usr/local/bin/mysqladmin -u root password AWSacc3s52LKPd"
+
+      - name: Setting user
+        mysql_user:
+          login_user: root
+          login_password: AWSacc3s52LKPd
+          name: admon
+          password: acc3s52LKPd
+          priv: '*.*:ALL'
+          state: present
+          host: '172.31.20.%'

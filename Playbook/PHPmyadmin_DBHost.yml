@@ -1,0 +1,8 @@
+- hosts: webservers
+  tasks:
+
+  - lineinfile:
+      path: /usr/local/www/phpMyAdmin/config.inc.php
+      regexp: 'host'
+      line: "$cfg['Servers'][$i]['host'] = '{{ DBHost }}';"
+

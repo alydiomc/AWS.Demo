@@ -1,0 +1,9 @@
+- name: RDS Delete
+  hosts: localhost
+  tasks:
+
+  - name: Deleting MySQL RDS
+    rds:
+      command: delete
+      instance_name: '{{ DBName }}'
+      region: ap-southeast-1

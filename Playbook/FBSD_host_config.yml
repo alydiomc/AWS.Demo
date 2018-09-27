@@ -1,0 +1,19 @@
+- hosts: AWS
+  tasks:
+
+  - lineinfile:
+      path: /etc/rc.conf
+      regexp: '^hostname='
+      line: 'hostname={{ NameTag }}'
+
+  - name: Changing hostname
+    command: "/bin/hostname {{ NameTag }}"
+
+  - name: Configuring host file...
+    copy:
+       remote_src: no
+       src: /root/Cloud/Apps/Conf/hosts
+       dest: /etc/hosts
+       owner: root
+       group: wheel
+       mode: 0444
