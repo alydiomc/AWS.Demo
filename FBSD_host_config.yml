@@ -12,7 +12,7 @@
   - name: Configuring host file...
     copy:
        remote_src: no
-       src: /root/Cloud/Apps/Conf/hosts
+       src: Configs/OS/hosts
        dest: /etc/hosts
        owner: root
        group: wheel

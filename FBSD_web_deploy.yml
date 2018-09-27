@@ -12,7 +12,7 @@
       - name: Configuring Web server (httpd.conf)...
         copy:
           remote_src: no
-          src: /root/Cloud/Apps/Conf/httpd.conf
+          src: Configs/Apps/Apache/httpd.conf
           dest: /usr/local/etc/apache24/httpd.conf
           owner: root
           group: wheel
@@ -21,7 +21,7 @@
       - name: Configuring Web server (httpd-ssl.conf)...
         copy:
           remote_src: no
-          src: /root/Cloud/Apps/Conf/httpd-ssl.conf
+          src: Configs/Apps/Apache/httpd-ssl.conf
           dest: /usr/local/etc/apache24/extra/httpd-ssl.conf
           owner: root
           group: wheel
@@ -31,7 +31,7 @@
       - name: Configuring Web server (webcert.crt)...
         copy:
           remote_src: no
-          src: /root/Cloud/Apps/Conf/webcert.crt
+          src: Configs/Apps/Apache/webcert.crt
           dest: /usr/local/etc/apache24/certs/webcert.crt
           owner: root
           group: wheel
@@ -40,7 +40,7 @@
       - name: Configuring Web server (webcert.key)...
         copy:
           remote_src: no
-          src: /root/Cloud/Apps/Conf/webcert.key
+          src: Configs/Apps/Apache/webcert.key
           dest: /usr/local/etc/apache24/certs/webcert.key
           owner: root
           group: wheel
@@ -50,7 +50,7 @@
       - name: Configuring Web server (Application)...
         copy:
           remote_src: no
-          src: /root/Cloud/Apps/Conf/config.inc.php
+          src: Configs/Apps/PHPmyAdmin/config.inc.php
           dest: /usr/local/www/phpMyAdmin/config.inc.php
           owner: root
           group: wheel
