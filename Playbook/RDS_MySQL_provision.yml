@@ -1,0 +1,25 @@
+- name: RDS Deployment
+  hosts: localhost
+  tasks:
+
+  - name: Deploying MySQL RDS
+    rds:
+      command: create
+      instance_name: '{{ DBName }}'
+      db_engine: MySQL
+      engine_version: 5.7.23
+      license_model: general-public-license
+      size: 20
+      region: ap-southeast-1
+      publicly_accessible: no
+      instance_type: db.t2.micro
+      username: admon
+      password: acc3s52LKPd
+      wait: yes
+      wait_timeout: 1100
+      tags:
+        Environment: Testing
+    register: rds
+
+  - debug:
+      msg: "The new db endpoint is {{ rds.instance.endpoint }}"
